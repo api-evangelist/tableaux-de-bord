@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://grafana.example.com/api/search?type=dash-db&tag=kubernetes&limit=25",
+    "headers": {
+      "Authorization": "Bearer glsa_xxxxxxxxxx",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 42,
+        "uid": "rYy7mH6Vz",
+        "title": "Infrastructure Overview",
+        "uri": "db/infrastructure-overview",
+        "url": "/d/rYy7mH6Vz/infrastructure-overview",
+        "type": "dash-db",
+        "tags": ["infrastructure", "kubernetes", "monitoring"],
+        "isStarred": false,
+        "folderId": 0,
+        "folderTitle": "General"
+      },
+      {
+        "id": 55,
+        "uid": "kT3zPQ8Lm",
+        "title": "Kubernetes Cluster Health",
+        "uri": "db/kubernetes-cluster-health",
+        "url": "/d/kT3zPQ8Lm/kubernetes-cluster-health",
+        "type": "dash-db",
+        "tags": ["kubernetes", "health"],
+        "isStarred": true,
+        "folderId": 12,
+        "folderTitle": "Kubernetes"
+      }
+    ]
+  }
+}

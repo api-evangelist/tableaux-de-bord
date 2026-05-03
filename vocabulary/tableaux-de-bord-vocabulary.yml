@@ -1,0 +1,158 @@
+name: Tableaux De Bord Vocabulary
+description: >-
+  Domain vocabulary for dashboard and data visualization APIs, covering concepts
+  from Grafana, Metabase, and the broader business intelligence and monitoring
+  dashboard landscape.
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Dashboards
+  - Business Intelligence
+  - Analytics
+  - Data Visualization
+  - Monitoring
+
+terms:
+  - term: Dashboard
+    definition: >-
+      A visual interface that aggregates and displays key metrics, charts, and
+      data visualizations in a unified view. In API contexts, dashboards are
+      first-class resources that can be created, updated, and queried
+      programmatically.
+    category: Core Concept
+    tags:
+      - Visualization
+      - Monitoring
+
+  - term: Panel
+    definition: >-
+      An individual visualization component within a dashboard. Panels can
+      represent time series charts, stat values, tables, gauges, bar charts,
+      pie charts, heatmaps, or text content. Each panel is bound to a query
+      against a datasource.
+    category: Dashboard Component
+    tags:
+      - Visualization
+
+  - term: Datasource
+    definition: >-
+      A configured connection to a data backend (e.g., Prometheus, InfluxDB,
+      Elasticsearch, PostgreSQL, MySQL, CloudWatch). Grafana datasources enable
+      panels to query data from multiple systems within a single dashboard.
+    category: Integration
+    tags:
+      - Data Integration
+      - Connectivity
+
+  - term: Grafana
+    definition: >-
+      An open-source observability and analytics platform that provides
+      dashboards, alerting, and data exploration for infrastructure, application,
+      and business metrics. Grafana exposes a comprehensive HTTP API for
+      programmatic management of dashboards, datasources, users, and alerting.
+    category: Platform
+    tags:
+      - Open Source
+      - Monitoring
+      - Observability
+
+  - term: Metabase
+    definition: >-
+      An open-source business intelligence tool that provides self-service
+      analytics with SQL and no-code question interfaces, dashboards, and
+      embedded analytics. Metabase exposes a REST API for automating report
+      and dashboard management.
+    category: Platform
+    tags:
+      - Business Intelligence
+      - Open Source
+
+  - term: UID
+    definition: >-
+      Unique identifier string for a Grafana resource (dashboard, datasource,
+      folder, etc.) that remains stable across export/import operations and
+      is suitable for use in infrastructure-as-code and GitOps workflows.
+    category: Grafana
+    tags:
+      - Identifiers
+
+  - term: Folder
+    definition: >-
+      A grouping mechanism in Grafana for organizing dashboards and managing
+      access permissions at the folder level. Folders can have teams and users
+      assigned with specific roles (Viewer, Editor, Admin).
+    category: Organization
+    tags:
+      - Access Control
+      - Organization
+
+  - term: Annotation
+    definition: >-
+      A timestamped marker or range added to a Grafana dashboard panel that
+      provides contextual information (e.g., deployments, incidents, config
+      changes). Annotations can be created via API and overlaid on time-series
+      graphs.
+    category: Grafana
+    tags:
+      - Events
+      - Context
+
+  - term: Alert Rule
+    definition: >-
+      A condition-based rule in Grafana Alerting that evaluates query results
+      against defined thresholds and triggers notifications when conditions are
+      met. Alert rules support multi-dimensional alerting, silences, and contact
+      points.
+    category: Alerting
+    tags:
+      - Monitoring
+      - Alerting
+
+  - term: Time Range
+    definition: >-
+      The temporal scope of data displayed in a dashboard or panel. Expressed
+      using relative values (e.g., "now-1h", "now-7d") or absolute timestamps.
+      Default time ranges can be set per dashboard and overridden per user session.
+    category: Core Concept
+    tags:
+      - Time Series
+
+  - term: Panel Query
+    definition: >-
+      A datasource-specific query expression that retrieves data for a panel
+      visualization (e.g., PromQL for Prometheus, SQL for PostgreSQL, Flux for
+      InfluxDB). Panel queries are evaluated on each dashboard load or refresh.
+    category: Data Access
+    tags:
+      - Queries
+      - Data Retrieval
+
+  - term: Organization
+    definition: >-
+      A multi-tenancy unit in Grafana that isolates dashboards, datasources,
+      users, and teams. Each organization has its own configuration namespace.
+      Enterprise installations often map organizations to business units or clients.
+    category: Multi-tenancy
+    tags:
+      - Access Control
+      - Multi-tenancy
+
+  - term: Dashboard as Code
+    definition: >-
+      The practice of managing dashboard definitions in version control using
+      tools like Grafonnet, Terraform (Grafana provider), or direct JSON/YAML
+      files, enabling GitOps workflows for dashboard lifecycle management.
+    category: DevOps
+    tags:
+      - GitOps
+      - Infrastructure as Code
+
+  - term: Embedded Analytics
+    definition: >-
+      The practice of embedding dashboard visualizations into external applications
+      using iframes or JavaScript SDKs. Both Grafana and Metabase provide
+      embedding capabilities with signed URL tokens for secure access control.
+    category: Integration
+    tags:
+      - Embedding
+      - Integration

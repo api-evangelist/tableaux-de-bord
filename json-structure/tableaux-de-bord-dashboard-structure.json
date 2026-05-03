@@ -1,0 +1,64 @@
+{
+  "title": "Dashboard Structure",
+  "description": "Field documentation for dashboard objects in monitoring and BI platforms",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "integer",
+      "description": "System-assigned numeric identifier, unique per instance",
+      "required": false,
+      "readOnly": true
+    },
+    {
+      "name": "uid",
+      "type": "string",
+      "description": "Portable identifier stable across export/import cycles",
+      "required": false
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Human-readable dashboard name shown in the UI",
+      "required": true
+    },
+    {
+      "name": "tags",
+      "type": "array<string>",
+      "description": "Labels for categorizing and filtering dashboards",
+      "required": false
+    },
+    {
+      "name": "panels",
+      "type": "array<Panel>",
+      "description": "Visualization components making up the dashboard layout",
+      "required": false
+    },
+    {
+      "name": "refresh",
+      "type": "string",
+      "description": "Auto-refresh interval ('5s', '1m', '5m', '1h')",
+      "required": false
+    },
+    {
+      "name": "time",
+      "type": "object",
+      "description": "Default time range with 'from' and 'to' values",
+      "required": false,
+      "example": {"from": "now-24h", "to": "now"}
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Incremented on each save for optimistic concurrency",
+      "required": false,
+      "readOnly": true
+    },
+    {
+      "name": "folderId",
+      "type": "integer",
+      "description": "Parent folder for organizational grouping",
+      "required": false
+    }
+  ]
+}

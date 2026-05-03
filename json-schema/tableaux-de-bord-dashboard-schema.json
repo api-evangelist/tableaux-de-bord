@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/tableaux-de-bord/json-schema/tableaux-de-bord-dashboard-schema.json",
+  "title": "Dashboard",
+  "description": "Common schema for a dashboard definition as used across BI and monitoring tools",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "System-assigned unique identifier",
+      "readOnly": true
+    },
+    "uid": {
+      "type": "string",
+      "description": "Portable unique identifier (stable across environments)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Dashboard display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the dashboard purpose"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Labels for organizing and searching dashboards",
+      "items": {
+        "type": "string"
+      }
+    },
+    "panels": {
+      "type": "array",
+      "description": "Visualization panels in the dashboard",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "integer"},
+          "title": {"type": "string"},
+          "type": {
+            "type": "string",
+            "description": "Panel visualization type",
+            "examples": ["timeseries", "stat", "table", "gauge", "barchart", "piechart"]
+          },
+          "datasource": {
+            "type": "object",
+            "properties": {
+              "type": {"type": "string"},
+              "uid": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "refresh": {
+      "type": "string",
+      "description": "Auto-refresh interval (e.g., '5s', '1m', '1h')"
+    },
+    "time": {
+      "type": "object",
+      "description": "Default time range",
+      "properties": {
+        "from": {"type": "string", "example": "now-1h"},
+        "to": {"type": "string", "example": "now"}
+      }
+    },
+    "version": {
+      "type": "integer",
+      "description": "Dashboard revision number",
+      "readOnly": true
+    },
+    "folderId": {
+      "type": "integer",
+      "description": "Parent folder identifier"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp",
+      "readOnly": true
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp",
+      "readOnly": true
+    }
+  },
+  "required": ["title"]
+}

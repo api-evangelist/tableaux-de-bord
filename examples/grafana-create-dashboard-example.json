@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://grafana.example.com/api/dashboards/db",
+    "headers": {
+      "Authorization": "Bearer glsa_xxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "dashboard": {
+        "id": null,
+        "uid": null,
+        "title": "Infrastructure Overview",
+        "tags": ["infrastructure", "kubernetes", "monitoring"],
+        "timezone": "browser",
+        "refresh": "30s",
+        "time": {
+          "from": "now-1h",
+          "to": "now"
+        },
+        "schemaVersion": 38,
+        "panels": [
+          {
+            "id": 1,
+            "type": "timeseries",
+            "title": "CPU Usage",
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+            "datasource": {"type": "prometheus", "uid": "prometheus-default"},
+            "targets": [
+              {
+                "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode='idle'}[5m])) * 100)",
+                "legendFormat": "{{instance}}"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "stat",
+            "title": "Active Pods",
+            "gridPos": {"h": 4, "w": 6, "x": 12, "y": 0},
+            "datasource": {"type": "prometheus", "uid": "prometheus-default"},
+            "targets": [
+              {
+                "expr": "count(kube_pod_status_phase{phase='Running'})",
+                "legendFormat": "Running Pods"
+              }
+            ]
+          }
+        ]
+      },
+      "folderId": 0,
+      "message": "Initial dashboard creation",
+      "overwrite": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 42,
+      "uid": "rYy7mH6Vz",
+      "url": "/d/rYy7mH6Vz/infrastructure-overview",
+      "status": "success",
+      "version": 1,
+      "slug": "infrastructure-overview"
+    }
+  }
+}

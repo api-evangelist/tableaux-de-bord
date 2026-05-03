@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "grafana": "https://grafana.com/vocabulary/",
+    "Dashboard": "schema:Dataset",
+    "Panel": "grafana:Panel",
+    "Datasource": "grafana:Datasource",
+    "Folder": "schema:Collection",
+    "Annotation": "schema:Comment",
+    "AlertRule": "grafana:AlertRule",
+    "Team": "schema:Organization",
+    "title": "schema:name",
+    "description": "schema:description",
+    "tags": "schema:keywords",
+    "uid": "schema:identifier",
+    "created": "schema:dateCreated",
+    "updated": "schema:dateModified",
+    "panels": "schema:hasPart",
+    "refresh": "grafana:refresh",
+    "folderId": "schema:isPartOf",
+    "datasource": "schema:provider",
+    "query": "grafana:query",
+    "time": "schema:temporalCoverage",
+    "annotations": "schema:comment",
+    "labels": "schema:keywords",
+    "orgId": "schema:memberOf"
+  }
+}
