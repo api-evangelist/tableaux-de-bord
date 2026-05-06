@@ -1,0 +1,790 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Grafana Dashboard API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization
+    management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics
+    platform for infrastructure, application, and business monitoring.
+  tags:
+  - Tableaux
+  - De
+  - Bord
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: tableaux-de-bord
+    baseUri: https://localhost:3000/api
+    description: Grafana Dashboard API HTTP API.
+    authentication:
+      type: basic
+      username: '{{TABLEAUX_DE_BORD_USERNAME}}'
+      password: '{{TABLEAUX_DE_BORD_PASSWORD}}'
+    resources:
+    - name: dashboards-db
+      path: /dashboards/db
+      operations:
+      - name: createorupdatedashboard
+        method: POST
+        description: Create Or Update Dashboard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboards-uid-uid
+      path: /dashboards/uid/{uid}
+      operations:
+      - name: getdashboardbyuid
+        method: GET
+        description: Get Dashboard By UID
+        inputParameters:
+        - name: uid
+          in: path
+          type: string
+          required: true
+          description: Dashboard unique identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletedashboardbyuid
+        method: DELETE
+        description: Delete Dashboard By UID
+        inputParameters:
+        - name: uid
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search
+      operations:
+      - name: searchdashboards
+        method: GET
+        description: Search Dashboards
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Search query string
+        - name: tag
+          in: query
+          type: string
+          description: Filter by tag
+        - name: type
+          in: query
+          type: string
+          description: Resource type filter
+        - name: folderIds
+          in: query
+          type: array
+          description: Folder IDs to search within
+        - name: limit
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasources
+      path: /datasources
+      operations:
+      - name: listdatasources
+        method: GET
+        description: List Datasources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdatasource
+        method: POST
+        description: Create Datasource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasources-id
+      path: /datasources/{id}
+      operations:
+      - name: getdatasourcebyid
+        method: GET
+        description: Get Datasource By ID
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedatasource
+        method: PUT
+        description: Update Datasource
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletedatasource
+        method: DELETE
+        description: Delete Datasource
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orgs
+      path: /orgs
+      operations:
+      - name: listorganizations
+        method: GET
+        description: List Organizations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorganization
+        method: POST
+        description: Create Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: org-users
+      path: /org/users
+      operations:
+      - name: listorgusers
+        method: GET
+        description: List Organization Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-search
+      path: /teams/search
+      operations:
+      - name: searchteams
+        method: GET
+        description: Search Teams
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: annotations
+      path: /annotations
+      operations:
+      - name: listannotations
+        method: GET
+        description: List Annotations
+        inputParameters:
+        - name: from
+          in: query
+          type: integer
+          description: Start time in milliseconds
+        - name: to
+          in: query
+          type: integer
+          description: End time in milliseconds
+        - name: dashboardId
+          in: query
+          type: integer
+        - name: panelId
+          in: query
+          type: integer
+        - name: tags
+          in: query
+          type: array
+        - name: limit
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createannotation
+        method: POST
+        description: Create Annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: folders
+      path: /folders
+      operations:
+      - name: listfolders
+        method: GET
+        description: List Folders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createfolder
+        method: POST
+        description: Create Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-provisioning-alert-rules
+      path: /v1/provisioning/alert-rules
+      operations:
+      - name: listalertrules
+        method: GET
+        description: List Alert Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createalertrule
+        method: POST
+        description: Create Alert Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: tableaux-de-bord-rest
+    description: REST adapter for Grafana Dashboard API.
+    resources:
+    - path: /dashboards/db
+      name: createorupdatedashboard
+      operations:
+      - method: POST
+        name: createorupdatedashboard
+        description: Create Or Update Dashboard
+        call: tableaux-de-bord.createorupdatedashboard
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboards/uid/{uid}
+      name: getdashboardbyuid
+      operations:
+      - method: GET
+        name: getdashboardbyuid
+        description: Get Dashboard By UID
+        call: tableaux-de-bord.getdashboardbyuid
+        with:
+          uid: rest.uid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboards/uid/{uid}
+      name: deletedashboardbyuid
+      operations:
+      - method: DELETE
+        name: deletedashboardbyuid
+        description: Delete Dashboard By UID
+        call: tableaux-de-bord.deletedashboardbyuid
+        with:
+          uid: rest.uid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /search
+      name: searchdashboards
+      operations:
+      - method: GET
+        name: searchdashboards
+        description: Search Dashboards
+        call: tableaux-de-bord.searchdashboards
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasources
+      name: listdatasources
+      operations:
+      - method: GET
+        name: listdatasources
+        description: List Datasources
+        call: tableaux-de-bord.listdatasources
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasources
+      name: createdatasource
+      operations:
+      - method: POST
+        name: createdatasource
+        description: Create Datasource
+        call: tableaux-de-bord.createdatasource
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasources/{id}
+      name: getdatasourcebyid
+      operations:
+      - method: GET
+        name: getdatasourcebyid
+        description: Get Datasource By ID
+        call: tableaux-de-bord.getdatasourcebyid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasources/{id}
+      name: updatedatasource
+      operations:
+      - method: PUT
+        name: updatedatasource
+        description: Update Datasource
+        call: tableaux-de-bord.updatedatasource
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasources/{id}
+      name: deletedatasource
+      operations:
+      - method: DELETE
+        name: deletedatasource
+        description: Delete Datasource
+        call: tableaux-de-bord.deletedatasource
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /orgs
+      name: listorganizations
+      operations:
+      - method: GET
+        name: listorganizations
+        description: List Organizations
+        call: tableaux-de-bord.listorganizations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /orgs
+      name: createorganization
+      operations:
+      - method: POST
+        name: createorganization
+        description: Create Organization
+        call: tableaux-de-bord.createorganization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /org/users
+      name: listorgusers
+      operations:
+      - method: GET
+        name: listorgusers
+        description: List Organization Users
+        call: tableaux-de-bord.listorgusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /teams/search
+      name: searchteams
+      operations:
+      - method: GET
+        name: searchteams
+        description: Search Teams
+        call: tableaux-de-bord.searchteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /annotations
+      name: listannotations
+      operations:
+      - method: GET
+        name: listannotations
+        description: List Annotations
+        call: tableaux-de-bord.listannotations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /annotations
+      name: createannotation
+      operations:
+      - method: POST
+        name: createannotation
+        description: Create Annotation
+        call: tableaux-de-bord.createannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /folders
+      name: listfolders
+      operations:
+      - method: GET
+        name: listfolders
+        description: List Folders
+        call: tableaux-de-bord.listfolders
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /folders
+      name: createfolder
+      operations:
+      - method: POST
+        name: createfolder
+        description: Create Folder
+        call: tableaux-de-bord.createfolder
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/provisioning/alert-rules
+      name: listalertrules
+      operations:
+      - method: GET
+        name: listalertrules
+        description: List Alert Rules
+        call: tableaux-de-bord.listalertrules
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/provisioning/alert-rules
+      name: createalertrule
+      operations:
+      - method: POST
+        name: createalertrule
+        description: Create Alert Rule
+        call: tableaux-de-bord.createalertrule
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: tableaux-de-bord-mcp
+    transport: http
+    description: MCP adapter for Grafana Dashboard API for AI agent use.
+    tools:
+    - name: createorupdatedashboard
+      description: Create Or Update Dashboard
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createorupdatedashboard
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdashboardbyuid
+      description: Get Dashboard By UID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.getdashboardbyuid
+      with:
+        uid: tools.uid
+      inputParameters:
+      - name: uid
+        type: string
+        description: Dashboard unique identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletedashboardbyuid
+      description: Delete Dashboard By UID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tableaux-de-bord.deletedashboardbyuid
+      with:
+        uid: tools.uid
+      inputParameters:
+      - name: uid
+        type: string
+        description: uid
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchdashboards
+      description: Search Dashboards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.searchdashboards
+      with:
+        query: tools.query
+        tag: tools.tag
+        type: tools.type
+        folderIds: tools.folderIds
+        limit: tools.limit
+      inputParameters:
+      - name: query
+        type: string
+        description: Search query string
+      - name: tag
+        type: string
+        description: Filter by tag
+      - name: type
+        type: string
+        description: Resource type filter
+      - name: folderIds
+        type: array
+        description: Folder IDs to search within
+      - name: limit
+        type: integer
+        description: limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listdatasources
+      description: List Datasources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listdatasources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createdatasource
+      description: Create Datasource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createdatasource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdatasourcebyid
+      description: Get Datasource By ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.getdatasourcebyid
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: integer
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatedatasource
+      description: Update Datasource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.updatedatasource
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: integer
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletedatasource
+      description: Delete Datasource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tableaux-de-bord.deletedatasource
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: integer
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listorganizations
+      description: List Organizations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listorganizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createorganization
+      description: Create Organization
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createorganization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listorgusers
+      description: List Organization Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listorgusers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchteams
+      description: Search Teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.searchteams
+      with:
+        query: tools.query
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listannotations
+      description: List Annotations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listannotations
+      with:
+        from: tools.from
+        to: tools.to
+        dashboardId: tools.dashboardId
+        panelId: tools.panelId
+        tags: tools.tags
+        limit: tools.limit
+      inputParameters:
+      - name: from
+        type: integer
+        description: Start time in milliseconds
+      - name: to
+        type: integer
+        description: End time in milliseconds
+      - name: dashboardId
+        type: integer
+        description: dashboardId
+      - name: panelId
+        type: integer
+        description: panelId
+      - name: tags
+        type: array
+        description: tags
+      - name: limit
+        type: integer
+        description: limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createannotation
+      description: Create Annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listfolders
+      description: List Folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listfolders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createfolder
+      description: Create Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createfolder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listalertrules
+      description: List Alert Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tableaux-de-bord.listalertrules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createalertrule
+      description: Create Alert Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tableaux-de-bord.createalertrule
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    TABLEAUX_DE_BORD_USERNAME: TABLEAUX_DE_BORD_USERNAME
+    TABLEAUX_DE_BORD_PASSWORD: TABLEAUX_DE_BORD_PASSWORD
