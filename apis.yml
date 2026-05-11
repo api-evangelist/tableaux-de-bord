@@ -82,6 +82,10 @@ common:
   - type: Vocabulary
     url: >-
       https://raw.githubusercontent.com/api-evangelist/tableaux-de-bord/refs/heads/main/vocabulary/tableaux-de-bord-vocabulary.yml
+  - type: Integrations
+    url: https://grafana.com/integrations/
+integrations:
+  - name: All visualization integrations
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
