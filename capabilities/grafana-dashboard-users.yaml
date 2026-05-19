@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Grafana Dashboard API — Users
+  description: 'Grafana Dashboard API — Users. 1 operations. Lead operation: List Organization Users. Self-contained Naftiko
+    capability covering one Tableaux De Bord business surface.'
+  tags:
+  - Tableaux De Bord
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TABLEAUX_DE_BORD_API_KEY: TABLEAUX_DE_BORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: grafana-dashboard-users
+    baseUri: https://{grafana-host}/api
+    description: Grafana Dashboard API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: org-users
+      path: /org/users
+      operations:
+      - name: listorgusers
+        method: GET
+        description: List Organization Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.TABLEAUX_DE_BORD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: grafana-dashboard-users-rest
+    port: 8080
+    description: REST adapter for Grafana Dashboard API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/org/users
+      name: org-users
+      description: REST surface for org-users.
+      operations:
+      - method: GET
+        name: listorgusers
+        description: List Organization Users
+        call: grafana-dashboard-users.listorgusers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: grafana-dashboard-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Grafana Dashboard API — Users. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-organization-users
+      description: List Organization Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grafana-dashboard-users.listorgusers
+      outputParameters:
+      - type: object
+        mapping: $.
