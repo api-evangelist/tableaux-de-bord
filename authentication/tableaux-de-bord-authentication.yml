@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/grafana-dashboard-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: Basic auth with Grafana username and password
+  sources:
+  - openapi/grafana-dashboard-openapi.yml
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key authentication using 'Bearer {api-key}'
+  sources:
+  - openapi/grafana-dashboard-openapi.yml
