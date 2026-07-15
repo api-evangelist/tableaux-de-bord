@@ -60,6 +60,8 @@ apis:
       - type: GitHub
         url: https://github.com/metabase/metabase
 common:
+  - type: AgenticAccess
+    url: agentic-access/tableaux-de-bord-agentic-access.yml
   - type: TrustCenter
     url: security/tableaux-de-bord-trust-center.yml
   - type: DomainSecurity
