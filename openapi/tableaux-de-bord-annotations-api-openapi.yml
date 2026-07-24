@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Annotations API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Annotations
+  description: Manage dashboard annotations
+paths:
+  /annotations:
+    get:
+      operationId: listAnnotations
+      summary: List Annotations
+      description: Find annotations matching query parameters.
+      tags:
+      - Annotations
+      parameters:
+      - name: from
+        in: query
+        description: Start time in milliseconds
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: End time in milliseconds
+        required: false
+        schema:
+          type: integer
+      - name: dashboardId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: panelId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of annotations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Annotation'
+    post:
+      operationId: createAnnotation
+      summary: Create Annotation
+      description: Create a new annotation on a dashboard panel.
+      tags:
+      - Annotations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAnnotationsCmd'
+      responses:
+        '200':
+          description: Annotation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAnnotationResponse'
+components:
+  schemas:
+    CreateAnnotationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+    Annotation:
+      type: object
+      properties:
+        id:
+          type: integer
+        dashboardId:
+          type: integer
+        panelId:
+          type: integer
+        userId:
+          type: integer
+        text:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        time:
+          type: integer
+          description: Timestamp in milliseconds
+        timeEnd:
+          type: integer
+          description: End timestamp for range annotations
+    PostAnnotationsCmd:
+      type: object
+      required:
+      - text
+      - time
+      properties:
+        dashboardId:
+          type: integer
+        panelId:
+          type: integer
+        time:
+          type: integer
+          description: Timestamp in milliseconds
+        timeEnd:
+          type: integer
+        text:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

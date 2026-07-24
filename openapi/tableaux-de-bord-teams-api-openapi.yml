@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Teams API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Teams
+  description: Manage teams and memberships
+paths:
+  /teams/search:
+    get:
+      operationId: searchTeams
+      summary: Search Teams
+      description: Search for teams in the organization.
+      tags:
+      - Teams
+      parameters:
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: perpage
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Team search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTeamQueryResult'
+components:
+  schemas:
+    SearchTeamQueryResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamDTO'
+        page:
+          type: integer
+        perPage:
+          type: integer
+    TeamDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        orgId:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        avatarUrl:
+          type: string
+        memberCount:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

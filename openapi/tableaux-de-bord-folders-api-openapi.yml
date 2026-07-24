@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Folders API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Folders
+  description: Organize dashboards in folders
+paths:
+  /folders:
+    get:
+      operationId: listFolders
+      summary: List Folders
+      description: Get all folders in the current organization.
+      tags:
+      - Folders
+      responses:
+        '200':
+          description: List of folders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Folder'
+    post:
+      operationId: createFolder
+      summary: Create Folder
+      description: Create a new folder for organizing dashboards.
+      tags:
+      - Folders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderCommand'
+      responses:
+        '200':
+          description: Folder created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+components:
+  schemas:
+    CreateFolderCommand:
+      type: object
+      required:
+      - title
+      properties:
+        uid:
+          type: string
+        title:
+          type: string
+    Folder:
+      type: object
+      properties:
+        id:
+          type: integer
+        uid:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        updatedBy:
+          type: string
+        version:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

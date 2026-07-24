@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Organizations API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Organizations
+  description: Manage Grafana organizations
+paths:
+  /orgs:
+    get:
+      operationId: listOrganizations
+      summary: List Organizations
+      description: List all organizations (admin only).
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: List of organizations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrgDTO'
+    post:
+      operationId: createOrganization
+      summary: Create Organization
+      description: Create a new organization.
+      tags:
+      - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrgCommand'
+      responses:
+        '200':
+          description: Organization created
+components:
+  schemas:
+    CreateOrgCommand:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    OrgDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        address:
+          type: object
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

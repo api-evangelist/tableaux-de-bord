@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Dashboards API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Dashboards
+  description: Create and manage Grafana dashboards
+paths:
+  /dashboards/db:
+    post:
+      operationId: createOrUpdateDashboard
+      summary: Create Or Update Dashboard
+      description: Creates a new dashboard or updates an existing one.
+      tags:
+      - Dashboards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveDashboardCommand'
+      responses:
+        '200':
+          description: Dashboard created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDashboardOKResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /dashboards/uid/{uid}:
+    get:
+      operationId: getDashboardByUID
+      summary: Get Dashboard By UID
+      description: Retrieve a dashboard by its unique identifier (UID).
+      tags:
+      - Dashboards
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: Dashboard unique identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dashboard found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardFullWithMeta'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDashboardByUID
+      summary: Delete Dashboard By UID
+      description: Delete a dashboard by its UID.
+      tags:
+      - Dashboards
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dashboard deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteDashboardResponse'
+  /search:
+    get:
+      operationId: searchDashboards
+      summary: Search Dashboards
+      description: Search for dashboards and folders with optional filtering.
+      tags:
+      - Dashboards
+      parameters:
+      - name: query
+        in: query
+        description: Search query string
+        required: false
+        schema:
+          type: string
+      - name: tag
+        in: query
+        description: Filter by tag
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Resource type filter
+        required: false
+        schema:
+          type: string
+          enum:
+          - dash-folder
+          - dash-db
+      - name: folderIds
+        in: query
+        description: Folder IDs to search within
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1000
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hit'
+components:
+  schemas:
+    PostDashboardOKResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        uid:
+          type: string
+        url:
+          type: string
+        status:
+          type: string
+        version:
+          type: integer
+        slug:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    Hit:
+      type: object
+      properties:
+        id:
+          type: integer
+        uid:
+          type: string
+        title:
+          type: string
+        uri:
+          type: string
+        url:
+          type: string
+        type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        isStarred:
+          type: boolean
+        folderId:
+          type: integer
+        folderUid:
+          type: string
+        folderTitle:
+          type: string
+    DeleteDashboardResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        title:
+          type: string
+    SaveDashboardCommand:
+      type: object
+      required:
+      - dashboard
+      properties:
+        dashboard:
+          type: object
+          description: Dashboard JSON model
+        folderId:
+          type: integer
+          description: Folder ID for the dashboard
+        folderUid:
+          type: string
+          description: Folder UID for the dashboard
+        message:
+          type: string
+          description: Commit message for the save
+        overwrite:
+          type: boolean
+          description: Whether to overwrite existing dashboard
+          default: false
+    DashboardFullWithMeta:
+      type: object
+      properties:
+        dashboard:
+          type: object
+          description: Dashboard JSON model
+        meta:
+          type: object
+          properties:
+            isStarred:
+              type: boolean
+            url:
+              type: string
+            folderId:
+              type: integer
+            folderTitle:
+              type: string
+            created:
+              type: string
+              format: date-time
+            updated:
+              type: string
+              format: date-time
+            createdBy:
+              type: string
+            updatedBy:
+              type: string
+            version:
+              type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

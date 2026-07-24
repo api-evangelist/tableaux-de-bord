@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Alerting
+  description: Manage Grafana alerting rules
+paths:
+  /v1/provisioning/alert-rules:
+    get:
+      operationId: listAlertRules
+      summary: List Alert Rules
+      description: Get all Grafana alerting rules.
+      tags:
+      - Alerting
+      responses:
+        '200':
+          description: List of alert rules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlertRule'
+    post:
+      operationId: createAlertRule
+      summary: Create Alert Rule
+      description: Create a new Grafana alerting rule.
+      tags:
+      - Alerting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertRule'
+      responses:
+        '201':
+          description: Alert rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertRule'
+components:
+  schemas:
+    AlertRule:
+      type: object
+      properties:
+        uid:
+          type: string
+        orgID:
+          type: integer
+        folderUID:
+          type: string
+        ruleGroup:
+          type: string
+        title:
+          type: string
+        condition:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+        noDataState:
+          type: string
+          enum:
+          - Alerting
+          - NoData
+          - OK
+        execErrState:
+          type: string
+          enum:
+          - Alerting
+          - Error
+          - OK
+        for:
+          type: string
+          description: Duration the rule must be pending before firing
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/

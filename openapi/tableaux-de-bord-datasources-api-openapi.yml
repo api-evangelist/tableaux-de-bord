@@ -1,0 +1,221 @@
+openapi: 3.0.3
+info:
+  title: Grafana Dashboard Alerting Datasources API
+  description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
+  version: 10.0.0
+  contact:
+    name: Grafana Labs
+    url: https://grafana.com/
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+- url: https://{grafana-host}/api
+  description: Grafana instance API
+  variables:
+    grafana-host:
+      default: localhost:3000
+      description: Grafana server hostname and port
+security:
+- BasicAuth: []
+- ApiKeyAuth: []
+tags:
+- name: Datasources
+  description: Manage data source connections
+paths:
+  /datasources:
+    get:
+      operationId: listDatasources
+      summary: List Datasources
+      description: Get all data sources for the current organization.
+      tags:
+      - Datasources
+      responses:
+        '200':
+          description: List of datasources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSource'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDatasource
+      summary: Create Datasource
+      description: Create a new data source.
+      tags:
+      - Datasources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDataSourceCommand'
+      responses:
+        '200':
+          description: Datasource created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDataSourceResponse'
+  /datasources/{id}:
+    get:
+      operationId: getDatasourceById
+      summary: Get Datasource By ID
+      description: Get a datasource by its numeric ID.
+      tags:
+      - Datasources
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Datasource details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+    put:
+      operationId: updateDatasource
+      summary: Update Datasource
+      description: Update an existing datasource.
+      tags:
+      - Datasources
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceCommand'
+      responses:
+        '200':
+          description: Datasource updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+    delete:
+      operationId: deleteDatasource
+      summary: Delete Datasource
+      description: Delete a datasource by ID.
+      tags:
+      - Datasources
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Datasource deleted
+components:
+  schemas:
+    AddDataSourceResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        name:
+          type: string
+        datasource:
+          $ref: '#/components/schemas/DataSource'
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: integer
+        uid:
+          type: string
+        orgId:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          description: Datasource plugin type (e.g., prometheus, influxdb, elasticsearch)
+        url:
+          type: string
+        access:
+          type: string
+          enum:
+          - proxy
+          - direct
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    UpdateDataSourceCommand:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
+    AddDataSourceCommand:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+          default: proxy
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
+        secureJsonData:
+          type: object
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic auth with Grafana username and password
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using 'Bearer {api-key}'
+externalDocs:
+  description: Grafana HTTP API Reference
+  url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
