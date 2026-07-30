@@ -7,7 +7,20 @@ description: >-
   enable programmatic creation and management of business intelligence dashboards for monitoring, analytics, and
   operational visibility.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tableaux-de-bord.png
 tags:
   - Dashboards
   - Business Intelligence
@@ -21,44 +34,138 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: tableaux-de-bord:grafana
-    name: Grafana HTTP API
-    description: >-
-      The Grafana HTTP API provides programmatic access to Grafana's dashboard, datasource, alerting, organization,
-      user, and annotation management capabilities. Grafana is an open-source observability and analytics platform
-      widely used for infrastructure and application monitoring.
-    humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
-    baseURL: https://your-grafana-instance.com
-    tags:
-      - Grafana
-      - Dashboards
-      - Monitoring
-      - Observability
-    properties:
-      - type: Documentation
-        url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/tableaux-de-bord/refs/heads/main/openapi/grafana-dashboard-openapi.yml
-      - type: GitHub
-        url: https://github.com/grafana/grafana
-  - aid: tableaux-de-bord:metabase
-    name: Metabase API
-    description: >-
-      The Metabase REST API enables automation of business intelligence workflows including creating and managing
-      dashboards, running questions (queries), managing users and groups, and embedding analytics in applications.
-    humanURL: https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
-    baseURL: https://your-metabase-instance.com
-    tags:
-      - Metabase
-      - Business Intelligence
-      - Analytics
-      - Dashboards
-    properties:
-      - type: Documentation
-        url: https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
-      - type: GitHub
-        url: https://github.com/metabase/metabase
+- aid: tableaux-de-bord:metabase
+  name: Metabase API
+  description: >-
+    The Metabase REST API enables automation of business intelligence workflows including creating and
+    managing dashboards, running questions (queries), managing users and groups, and embedding analytics
+    in applications.
+  humanURL: >-
+    https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
+  baseURL: https://your-metabase-instance.com
+  tags:
+  - Metabase
+  - Business Intelligence
+  - Analytics
+  - Dashboards
+  properties:
+  - type: Documentation
+    url: >-
+      https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
+  - type: GitHub
+    url: https://github.com/metabase/metabase
+- aid: tableaux-de-bord:tableaux-de-bord-alerting-api
+  name: Tableaux De Bord Alerting API
+  description: Manage Grafana alerting rules
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Alerting
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-alerting-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-annotations-api
+  name: Tableaux De Bord Annotations API
+  description: Manage dashboard annotations
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-annotations-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-dashboards-api
+  name: Tableaux De Bord Dashboards API
+  description: Create and manage Grafana dashboards
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Dashboards
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-dashboards-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-datasources-api
+  name: Tableaux De Bord Datasources API
+  description: Manage data source connections
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Datasources
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-datasources-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-folders-api
+  name: Tableaux De Bord Folders API
+  description: Organize dashboards in folders
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-folders-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-organizations-api
+  name: Tableaux De Bord Organizations API
+  description: Manage Grafana organizations
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-teams-api
+  name: Tableaux De Bord Teams API
+  description: Manage teams and memberships
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-teams-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
+- aid: tableaux-de-bord:tableaux-de-bord-users-api
+  name: Tableaux De Bord Users API
+  description: Manage Grafana users
+  humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  baseURL: https://your-grafana-instance.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/tableaux-de-bord-users-api-openapi.yml
+  - type: Documentation
+    url: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+  - type: GitHub
+    url: https://github.com/grafana/grafana
 common:
   - type: AgenticAccess
     url: agentic-access/tableaux-de-bord-agentic-access.yml
