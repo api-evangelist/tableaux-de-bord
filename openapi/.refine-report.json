@@ -1,0 +1,28 @@
+{
+  "provider": "tableaux-de-bord",
+  "sources": [
+    "tableaux-de-bord-alerting-api-openapi.yml",
+    "tableaux-de-bord-annotations-api-openapi.yml",
+    "tableaux-de-bord-dashboards-api-openapi.yml",
+    "tableaux-de-bord-datasources-api-openapi.yml",
+    "tableaux-de-bord-folders-api-openapi.yml",
+    "tableaux-de-bord-organizations-api-openapi.yml",
+    "tableaux-de-bord-teams-api-openapi.yml",
+    "tableaux-de-bord-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "tableaux-de-bord-alerting-api-openapi.yml",
+    "tableaux-de-bord-annotations-api-openapi.yml",
+    "tableaux-de-bord-dashboards-api-openapi.yml",
+    "tableaux-de-bord-datasources-api-openapi.yml",
+    "tableaux-de-bord-folders-api-openapi.yml",
+    "tableaux-de-bord-organizations-api-openapi.yml",
+    "tableaux-de-bord-teams-api-openapi.yml",
+    "tableaux-de-bord-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
