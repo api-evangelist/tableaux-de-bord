@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grafana Dashboard Alerting Teams API",
+    "version": "10.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{grafana-host}/api/teams/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perpage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for teams in the organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,259 @@
+{
+  "item": [
+    {
+      "id": "59d139f9-47ae-413a-a4ca-38ec40f304ec",
+      "name": "Folders",
+      "description": {
+        "content": "Organize dashboards in folders",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93ceb592-5d03-4e13-bfbc-f1f663d59275",
+          "name": "List Folders",
+          "request": {
+            "name": "List Folders",
+            "description": {
+              "content": "Get all folders in the current organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0df42d0b-b1e6-49ce-ac16-2f16ed4bfcaf",
+              "name": "List of folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 211,\n    \"uid\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"created\": \"1997-12-09T06:18:38.989Z\",\n    \"updated\": \"1949-06-26T09:46:43.234Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"version\": 3331\n  },\n  {\n    \"id\": 5713,\n    \"uid\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"created\": \"2017-10-07T22:06:25.438Z\",\n    \"updated\": \"2002-05-28T09:26:32.627Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"version\": 5057\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60cd7729-cf54-4cd1-85a1-9b5417093dd1",
+          "name": "Create Folder",
+          "request": {
+            "name": "Create Folder",
+            "description": {
+              "content": "Create a new folder for organizing dashboards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"uid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d343972-2d1c-4fa0-9dae-130a252025fc",
+              "name": "Folder created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3645,\n  \"uid\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"created\": \"1958-06-02T22:27:30.534Z\",\n  \"updated\": \"2012-04-15T16:56:34.251Z\",\n  \"createdBy\": \"string\",\n  \"updatedBy\": \"string\",\n  \"version\": 5944\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Grafana server hostname and port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:3000",
+      "key": "grafana-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{grafana-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "329f5803-60f0-481a-918b-198c731a8ece",
+    "name": "Grafana Dashboard Alerting Folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.\n\nContact Support:\n Name: Grafana Labs",
+      "type": "text/plain"
+    }
+  }
+}

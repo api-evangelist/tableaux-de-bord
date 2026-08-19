@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "de08db08-0f57-4991-83f2-6aec966fe7b7",
+      "name": "Alerting",
+      "description": {
+        "content": "Manage Grafana alerting rules",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a76747b7-b7ea-432b-9dd5-44e0f2e4300b",
+          "name": "List Alert Rules",
+          "request": {
+            "name": "List Alert Rules",
+            "description": {
+              "content": "Get all Grafana alerting rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "provisioning",
+                "alert-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eac240a8-a082-40de-b551-b0b20e6cf9e7",
+              "name": "List of alert rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "provisioning",
+                    "alert-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uid\": \"string\",\n    \"orgID\": 7459,\n    \"folderUID\": \"string\",\n    \"ruleGroup\": \"string\",\n    \"title\": \"string\",\n    \"condition\": \"string\",\n    \"noDataState\": \"OK\",\n    \"execErrState\": \"Error\",\n    \"for\": \"string\",\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"uid\": \"string\",\n    \"orgID\": 3135,\n    \"folderUID\": \"string\",\n    \"ruleGroup\": \"string\",\n    \"title\": \"string\",\n    \"condition\": \"string\",\n    \"noDataState\": \"Alerting\",\n    \"execErrState\": \"Alerting\",\n    \"for\": \"string\",\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55bfae1c-2890-4e5c-8999-95c353176e9c",
+          "name": "Create Alert Rule",
+          "request": {
+            "name": "Create Alert Rule",
+            "description": {
+              "content": "Create a new Grafana alerting rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "provisioning",
+                "alert-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uid\": \"<string>\",\n  \"orgID\": \"<integer>\",\n  \"folderUID\": \"<string>\",\n  \"ruleGroup\": \"<string>\",\n  \"title\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"data\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"noDataState\": \"<string>\",\n  \"execErrState\": \"<string>\",\n  \"for\": \"<string>\",\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6b5aa55-7c85-4b01-95c6-9c81eb2e798e",
+              "name": "Alert rule created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "provisioning",
+                    "alert-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uid\": \"<string>\",\n  \"orgID\": \"<integer>\",\n  \"folderUID\": \"<string>\",\n  \"ruleGroup\": \"<string>\",\n  \"title\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"data\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"noDataState\": \"<string>\",\n  \"execErrState\": \"<string>\",\n  \"for\": \"<string>\",\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uid\": \"<string>\",\n  \"orgID\": \"<integer>\",\n  \"folderUID\": \"<string>\",\n  \"ruleGroup\": \"<string>\",\n  \"title\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"data\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"noDataState\": \"<string>\",\n  \"execErrState\": \"<string>\",\n  \"for\": \"<string>\",\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Grafana server hostname and port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:3000",
+      "key": "grafana-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{grafana-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15d8c461-fb29-4c5e-a455-26cb0c6c0fbf",
+    "name": "Grafana Dashboard Alerting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.\n\nContact Support:\n Name: Grafana Labs",
+      "type": "text/plain"
+    }
+  }
+}

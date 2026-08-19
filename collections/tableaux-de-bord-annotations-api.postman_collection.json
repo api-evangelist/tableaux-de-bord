@@ -1,0 +1,326 @@
+{
+  "item": [
+    {
+      "id": "11224524-0a3c-416a-97b3-b1358ea17262",
+      "name": "Annotations",
+      "description": {
+        "content": "Manage dashboard annotations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27521d3a-e2a5-4618-ae8e-ac4fafbea957",
+          "name": "List Annotations",
+          "request": {
+            "name": "List Annotations",
+            "description": {
+              "content": "Find annotations matching query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Start time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<integer>",
+                  "description": "End time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "dashboardId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "panelId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75369390-645d-4626-aa10-2dbb98b72281",
+              "name": "List of annotations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "dashboardId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "panelId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4760,\n    \"dashboardId\": 1020,\n    \"panelId\": 7383,\n    \"userId\": 9877,\n    \"text\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"time\": 1713,\n    \"timeEnd\": 1942\n  },\n  {\n    \"id\": 7464,\n    \"dashboardId\": 8321,\n    \"panelId\": 2915,\n    \"userId\": 6638,\n    \"text\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"time\": 8546,\n    \"timeEnd\": 5338\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98a8abc5-8067-4ccd-9a02-06d03ffb30b6",
+          "name": "Create Annotation",
+          "request": {
+            "name": "Create Annotation",
+            "description": {
+              "content": "Create a new annotation on a dashboard panel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"dashboardId\": \"<integer>\",\n  \"panelId\": \"<integer>\",\n  \"timeEnd\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6385fab5-ffba-4781-83f7-fd2f8a4cde0b",
+              "name": "Annotation created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"time\": \"<integer>\",\n  \"dashboardId\": \"<integer>\",\n  \"panelId\": \"<integer>\",\n  \"timeEnd\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 974,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Grafana server hostname and port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:3000",
+      "key": "grafana-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{grafana-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3cd0282-669e-49e5-a167-c84a6e47d3e1",
+    "name": "Grafana Dashboard Alerting Annotations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.\n\nContact Support:\n Name: Grafana Labs",
+      "type": "text/plain"
+    }
+  }
+}

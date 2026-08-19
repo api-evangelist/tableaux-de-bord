@@ -1,0 +1,177 @@
+{
+  "item": [
+    {
+      "id": "514087d7-73a6-4232-b8fd-555dc017dbf5",
+      "name": "Teams",
+      "description": {
+        "content": "Manage teams and memberships",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "054dfef1-25d9-4a2e-a907-3433974d3b77",
+          "name": "Search Teams",
+          "request": {
+            "name": "Search Teams",
+            "description": {
+              "content": "Search for teams in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perpage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b982b20f-e871-475c-ae70-10bb28c27ff5",
+              "name": "Team search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 3375,\n  \"teams\": [\n    {\n      \"id\": 5587,\n      \"orgId\": 6097,\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"memberCount\": 5610\n    },\n    {\n      \"id\": 3121,\n      \"orgId\": 7504,\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"memberCount\": 130\n    }\n  ],\n  \"page\": 2538,\n  \"perPage\": 1612\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Grafana server hostname and port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:3000",
+      "key": "grafana-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{grafana-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d50a385f-a94a-4812-9f9a-f842b5721816",
+    "name": "Grafana Dashboard Alerting Teams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.\n\nContact Support:\n Name: Grafana Labs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grafana Dashboard Alerting Users API",
+    "version": "10.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{grafana-host}/api/org/users"
+          },
+          "docs": "Get all users in the current organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

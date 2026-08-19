@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "8a7dd4ca-ff42-4aeb-94e7-b369f547610f",
+      "name": "Users",
+      "description": {
+        "content": "Manage Grafana users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bbc7491d-b04b-4c8f-80f9-1e66906a5a3d",
+          "name": "List Organization Users",
+          "request": {
+            "name": "List Organization Users",
+            "description": {
+              "content": "Get all users in the current organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Grafana server hostname and port",
+                  "type": "any",
+                  "value": "{{grafana-host}}",
+                  "key": "grafana-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33a053a2-79b0-4dcf-9475-b6c1f152f07b",
+              "name": "List of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Grafana server hostname and port",
+                      "type": "any",
+                      "value": "{{grafana-host}}",
+                      "key": "grafana-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"orgId\": 6778,\n    \"userId\": 6768,\n    \"email\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"login\": \"string\",\n    \"role\": \"Viewer\"\n  },\n  {\n    \"orgId\": 3114,\n    \"userId\": 2284,\n    \"email\": \"string\",\n    \"avatarUrl\": \"string\",\n    \"login\": \"string\",\n    \"role\": \"Admin\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Grafana server hostname and port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:3000",
+      "key": "grafana-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{grafana-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1a4a51e-c7cd-4c5a-8610-fbcc3f3c43db",
+    "name": "Grafana Dashboard Alerting Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.\n\nContact Support:\n Name: Grafana Labs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grafana Dashboard Alerting Annotations API",
+    "version": "10.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{grafana-host}/api/annotations",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start time in milliseconds"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End time in milliseconds"
+              },
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "panelId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Find annotations matching query parameters."
+        },
+        {
+          "info": {
+            "name": "Create Annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{grafana-host}/api/annotations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new annotation on a dashboard panel."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

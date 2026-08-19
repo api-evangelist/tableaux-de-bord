@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grafana Dashboard Alerting Datasources API",
+    "version": "10.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Datasources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{grafana-host}/api/datasources"
+          },
+          "docs": "Get all data sources for the current organization."
+        },
+        {
+          "info": {
+            "name": "Create Datasource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{grafana-host}/api/datasources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data source."
+        },
+        {
+          "info": {
+            "name": "Get Datasource By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{grafana-host}/api/datasources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a datasource by its numeric ID."
+        },
+        {
+          "info": {
+            "name": "Update Datasource",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{grafana-host}/api/datasources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing datasource."
+        },
+        {
+          "info": {
+            "name": "Delete Datasource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{grafana-host}/api/datasources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a datasource by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
