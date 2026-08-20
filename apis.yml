@@ -28,6 +28,14 @@ tags:
   - Data Visualization
   - Monitoring
   - Grafana
+  - METABASE
+tags_raw:
+  - Dashboards
+  - Business Intelligence
+  - Analytics
+  - Data Visualization
+  - Monitoring
+  - Grafana
   - Metabase
 url: https://raw.githubusercontent.com/api-evangelist/tableaux-de-bord/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -44,6 +52,11 @@ apis:
     https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
   baseURL: https://your-metabase-instance.com
   tags:
+  - METABASE
+  - Business Intelligence
+  - Analytics
+  - Dashboards
+  tags_raw:
   - Metabase
   - Business Intelligence
   - Analytics
@@ -102,6 +115,8 @@ apis:
   humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
   baseURL: https://your-grafana-instance.com
   tags:
+  - Data Sources
+  tags_raw:
   - Datasources
   properties:
   - type: OpenAPI
@@ -130,6 +145,8 @@ apis:
   humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
   baseURL: https://your-grafana-instance.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -144,6 +161,8 @@ apis:
   humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
   baseURL: https://your-grafana-instance.com
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -158,6 +177,8 @@ apis:
   humanURL: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
   baseURL: https://your-grafana-instance.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
