@@ -39,7 +39,7 @@ tags:
   - Data Visualization
   - Monitoring
   - Grafana
-  - METABASE
+  - Metabase
 tags_raw:
   - Dashboards
   - Business Intelligence
@@ -63,7 +63,7 @@ apis:
     https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api
   baseURL: https://your-metabase-instance.com
   tags:
-  - METABASE
+  - Metabase
   - Business Intelligence
   - Analytics
   - Dashboards
