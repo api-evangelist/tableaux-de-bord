@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Grafana Dashboard Alerting Datasources API
+  title: Grafana Dashboard Datasources API
   description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
   version: 10.0.0
   contact:
@@ -20,7 +20,7 @@ security:
 - BasicAuth: []
 - ApiKeyAuth: []
 tags:
-- name: Datasources
+- name: Data Sources
   description: Manage data source connections
 paths:
   /datasources:
@@ -29,7 +29,7 @@ paths:
       summary: List Datasources
       description: Get all data sources for the current organization.
       tags:
-      - Datasources
+      - Data Sources
       responses:
         '200':
           description: List of datasources
@@ -46,7 +46,7 @@ paths:
       summary: Create Datasource
       description: Create a new data source.
       tags:
-      - Datasources
+      - Data Sources
       requestBody:
         required: true
         content:
@@ -66,7 +66,7 @@ paths:
       summary: Get Datasource By ID
       description: Get a datasource by its numeric ID.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - name: id
         in: path
@@ -85,7 +85,7 @@ paths:
       summary: Update Datasource
       description: Update an existing datasource.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - name: id
         in: path
@@ -110,7 +110,7 @@ paths:
       summary: Delete Datasource
       description: Delete a datasource by ID.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - name: id
         in: path
@@ -122,6 +122,27 @@ paths:
           description: Datasource deleted
 components:
   schemas:
+    AddDataSourceCommand:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+          default: proxy
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
+        secureJsonData:
+          type: object
     AddDataSourceResponse:
       type: object
       properties:
@@ -133,6 +154,26 @@ components:
           type: string
         datasource:
           $ref: '#/components/schemas/DataSource'
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    UpdateDataSourceCommand:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
     DataSource:
       type: object
       properties:
@@ -157,47 +198,6 @@ components:
         isDefault:
           type: boolean
         jsonData:
-          type: object
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-    UpdateDataSourceCommand:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        url:
-          type: string
-        access:
-          type: string
-        isDefault:
-          type: boolean
-        jsonData:
-          type: object
-    AddDataSourceCommand:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        url:
-          type: string
-        access:
-          type: string
-          default: proxy
-        isDefault:
-          type: boolean
-        jsonData:
-          type: object
-        secureJsonData:
           type: object
   responses:
     Unauthorized:

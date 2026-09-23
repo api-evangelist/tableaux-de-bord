@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Grafana Dashboard Alerting Organizations API
+  title: Grafana Dashboard Organizations API
   description: The Grafana HTTP API provides programmatic access to dashboard management, datasource configuration, organization management, user administration, annotation management, and alerting. Grafana is an open-source observability and analytics platform for infrastructure, application, and business monitoring.
   version: 10.0.0
   contact:
@@ -56,13 +56,6 @@ paths:
           description: Organization created
 components:
   schemas:
-    CreateOrgCommand:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
     OrgDTO:
       type: object
       properties:
@@ -72,6 +65,13 @@ components:
           type: string
         address:
           type: object
+    CreateOrgCommand:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http
