@@ -95,13 +95,6 @@ paths:
                 $ref: '#/components/schemas/CreateAnnotationResponse'
 components:
   schemas:
-    CreateAnnotationResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        message:
-          type: string
     Annotation:
       type: object
       properties:
@@ -146,6 +139,13 @@ components:
           type: array
           items:
             type: string
+    CreateAnnotationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

@@ -56,6 +56,13 @@ paths:
           description: Organization created
 components:
   schemas:
+    CreateOrgCommand:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     OrgDTO:
       type: object
       properties:
@@ -65,13 +72,6 @@ components:
           type: string
         address:
           type: object
-    CreateOrgCommand:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http

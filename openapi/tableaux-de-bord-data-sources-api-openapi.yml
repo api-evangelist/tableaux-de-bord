@@ -122,27 +122,6 @@ paths:
           description: Datasource deleted
 components:
   schemas:
-    AddDataSourceCommand:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        url:
-          type: string
-        access:
-          type: string
-          default: proxy
-        isDefault:
-          type: boolean
-        jsonData:
-          type: object
-        secureJsonData:
-          type: object
     AddDataSourceResponse:
       type: object
       properties:
@@ -154,11 +133,6 @@ components:
           type: string
         datasource:
           $ref: '#/components/schemas/DataSource'
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
     UpdateDataSourceCommand:
       type: object
       properties:
@@ -199,6 +173,32 @@ components:
           type: boolean
         jsonData:
           type: object
+    AddDataSourceCommand:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+          default: proxy
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
+        secureJsonData:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Authentication required
