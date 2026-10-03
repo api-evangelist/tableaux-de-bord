@@ -145,6 +145,26 @@ paths:
                   $ref: '#/components/schemas/Hit'
 components:
   schemas:
+    PostDashboardOKResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        uid:
+          type: string
+        url:
+          type: string
+        status:
+          type: string
+        version:
+          type: integer
+        slug:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
     SaveDashboardCommand:
       type: object
       required:
@@ -166,15 +186,6 @@ components:
           type: boolean
           description: Whether to overwrite existing dashboard
           default: false
-    DeleteDashboardResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        message:
-          type: string
-        title:
-          type: string
     Hit:
       type: object
       properties:
@@ -201,6 +212,15 @@ components:
         folderUid:
           type: string
         folderTitle:
+          type: string
+    DeleteDashboardResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        title:
           type: string
     DashboardFullWithMeta:
       type: object
@@ -231,35 +251,15 @@ components:
               type: string
             version:
               type: integer
-    PostDashboardOKResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        uid:
-          type: string
-        url:
-          type: string
-        status:
-          type: string
-        version:
-          type: integer
-        slug:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -270,8 +270,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

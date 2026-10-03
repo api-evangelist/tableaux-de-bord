@@ -60,6 +60,15 @@ paths:
                 $ref: '#/components/schemas/Folder'
 components:
   schemas:
+    CreateFolderCommand:
+      type: object
+      required:
+      - title
+      properties:
+        uid:
+          type: string
+        title:
+          type: string
     Folder:
       type: object
       properties:
@@ -83,15 +92,6 @@ components:
           type: string
         version:
           type: integer
-    CreateFolderCommand:
-      type: object
-      required:
-      - title
-      properties:
-        uid:
-          type: string
-        title:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http
