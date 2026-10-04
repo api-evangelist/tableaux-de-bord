@@ -95,27 +95,6 @@ paths:
                 $ref: '#/components/schemas/CreateAnnotationResponse'
 components:
   schemas:
-    PostAnnotationsCmd:
-      type: object
-      required:
-      - text
-      - time
-      properties:
-        dashboardId:
-          type: integer
-        panelId:
-          type: integer
-        time:
-          type: integer
-          description: Timestamp in milliseconds
-        timeEnd:
-          type: integer
-        text:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
     CreateAnnotationResponse:
       type: object
       properties:
@@ -146,6 +125,27 @@ components:
         timeEnd:
           type: integer
           description: End timestamp for range annotations
+    PostAnnotationsCmd:
+      type: object
+      required:
+      - text
+      - time
+      properties:
+        dashboardId:
+          type: integer
+        panelId:
+          type: integer
+        time:
+          type: integer
+          description: Timestamp in milliseconds
+        timeEnd:
+          type: integer
+        text:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
   securitySchemes:
     BasicAuth:
       type: http

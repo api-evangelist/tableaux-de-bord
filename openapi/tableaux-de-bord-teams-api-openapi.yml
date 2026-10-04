@@ -55,6 +55,19 @@ paths:
                 $ref: '#/components/schemas/SearchTeamQueryResult'
 components:
   schemas:
+    SearchTeamQueryResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamDTO'
+        page:
+          type: integer
+        perPage:
+          type: integer
     TeamDTO:
       type: object
       properties:
@@ -69,19 +82,6 @@ components:
         avatarUrl:
           type: string
         memberCount:
-          type: integer
-    SearchTeamQueryResult:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-        teams:
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamDTO'
-        page:
-          type: integer
-        perPage:
           type: integer
   securitySchemes:
     BasicAuth:
