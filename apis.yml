@@ -56,7 +56,7 @@ tags_raw:
   - Metabase
 url: https://raw.githubusercontent.com/api-evangelist/tableaux-de-bord/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: tableaux-de-bord:metabase
@@ -206,6 +206,10 @@ apis:
   - type: GitHub
     url: https://github.com/grafana/grafana
 common:
+  - url: https://www.metabase.com/blog
+    type: Blog
+  - url: https://www.metabase.com/feed.xml
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/tableaux-de-bord-agentic-access.yml
   - type: TrustCenter
