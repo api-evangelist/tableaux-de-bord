@@ -1,0 +1,21 @@
+{
+  "repo": "tableaux-de-bord",
+  "feeds": [
+    {
+      "source": "https://www.metabase.com/blog",
+      "feed_url": "https://www.metabase.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.metabase.com/feed.xml",
+      "feed_url": "https://www.metabase.com/feed.xml",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-10-10T13:15:00Z"
+}
