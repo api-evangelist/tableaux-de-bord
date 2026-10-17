@@ -129,6 +129,26 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    UpdateDataSourceCommand:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        access:
+          type: string
+        isDefault:
+          type: boolean
+        jsonData:
+          type: object
     AddDataSourceResponse:
       type: object
       properties:
@@ -161,26 +181,6 @@ components:
           enum:
           - proxy
           - direct
-        isDefault:
-          type: boolean
-        jsonData:
-          type: object
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-    UpdateDataSourceCommand:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        url:
-          type: string
-        access:
-          type: string
         isDefault:
           type: boolean
         jsonData:
